@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 // Pages
@@ -10,23 +10,28 @@ import Simplify from "./pages/Simplify";
 import QA from "./pages/QA";
 
 // Animated Routes Wrapper
-export default function AnimatedRoutes() {
+function AnimatedRoutes() {
   const location = useLocation();
 
-  const pageTransition = {
+  const variants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
-    transition: { duration: 0.5 },
   };
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route
           path="/"
           element={
-            <motion.div {...pageTransition}>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={variants}
+              transition={{ duration: 0.4 }}
+            >
               <Login />
             </motion.div>
           }
@@ -34,7 +39,13 @@ export default function AnimatedRoutes() {
         <Route
           path="/input"
           element={
-            <motion.div {...pageTransition}>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={variants}
+              transition={{ duration: 0.4 }}
+            >
               <Dashboard />
             </motion.div>
           }
@@ -42,7 +53,13 @@ export default function AnimatedRoutes() {
         <Route
           path="/upload"
           element={
-            <motion.div {...pageTransition}>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={variants}
+              transition={{ duration: 0.4 }}
+            >
               <Upload />
             </motion.div>
           }
@@ -50,7 +67,13 @@ export default function AnimatedRoutes() {
         <Route
           path="/simplify"
           element={
-            <motion.div {...pageTransition}>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={variants}
+              transition={{ duration: 0.4 }}
+            >
               <Simplify />
             </motion.div>
           }
@@ -58,7 +81,13 @@ export default function AnimatedRoutes() {
         <Route
           path="/qa"
           element={
-            <motion.div {...pageTransition}>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={variants}
+              transition={{ duration: 0.4 }}
+            >
               <QA />
             </motion.div>
           }
@@ -67,7 +96,13 @@ export default function AnimatedRoutes() {
         <Route
           path="*"
           element={
-            <motion.div {...pageTransition}>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={variants}
+              transition={{ duration: 0.4 }}
+            >
               <Login />
             </motion.div>
           }
@@ -77,8 +112,10 @@ export default function AnimatedRoutes() {
   );
 }
 
-// Main App
-export function App() {
-  return <AnimatedRoutes />;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AnimatedRoutes />
+    </BrowserRouter>
+  );
 }
-

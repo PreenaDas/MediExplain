@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import { motion } from "framer-motion";
 
 export default function QA() {
   const [question, setQuestion] = useState("");
@@ -12,38 +12,35 @@ export default function QA() {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-r from-primary-400 via-accent-500 to-primary-500"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
+      className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
       <Navbar />
-
-      <div className="flex flex-col items-center justify-center p-6">
-        <h1 className="text-4xl font-bold mb-6 text-white drop-shadow-lg">
+      <div className="flex flex-col items-center p-6">
+        <h1 className="text-3xl font-bold mb-6 text-primary-700 drop-shadow-lg">
           Q&A Textbox
         </h1>
-
         <textarea
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="Ask a question..."
-          className="w-full max-w-md h-32 p-3 mb-4 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all"
+          className="w-full max-w-md h-32 p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-500 shadow-md hover:shadow-glow transition-all mb-4"
         />
-
         <button
-          onClick={handleAsk}
-          className="bg-accent-500 text-white px-6 py-2 rounded-lg hover:bg-accent-600 shadow-lg hover:shadow-xl transition-all mb-4"
-        >
-          Ask
-        </button>
+  onClick={handleAsk}
+  className="bg-primary-500 text-white px-6 py-3 rounded-xl hover:bg-primary-600 shadow-glow hover:shadow-xl transition-all"
+>
+  Ask
+</button>
 
         {answer && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg mt-4"
+            className="w-full max-w-md p-4 bg-white rounded-xl shadow-lg mt-6"
           >
             <h2 className="font-semibold mb-2 text-primary-700">Answer:</h2>
             <p>{answer}</p>

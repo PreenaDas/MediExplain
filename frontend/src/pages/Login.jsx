@@ -1,3 +1,4 @@
+// src/pages/Login.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -11,63 +12,80 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ username, password, email });
-    navigate("/input"); // go to Dashboard
+    navigate("/input"); // redirect to dashboard
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated gradient background */}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-animated bg-[length:200%_200%] animate-gradient-x">
+      {/* Animated Glass Card */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-primary-400 via-accent-500 to-primary-500 animate-gradient-x"
-        animate={{ x: ["0%", "100%", "0%"] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      />
-
-      {/* Login Form */}
-      <motion.div
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 w-full max-w-md p-8 bg-white/30 backdrop-blur-md rounded-2xl shadow-2xl"
+        initial={{ opacity: 0, scale: 0.9, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="backdrop-blur-xl bg-glass p-10 rounded-3xl shadow-glow border border-white/20 w-full max-w-md"
       >
-        <h1 className="text-5xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-accent-500 to-primary-500 drop-shadow-lg">
-          MediExplain
+        {/* Logo / Title */}
+        <h1 className="text-5xl font-extrabold text-white drop-shadow-md text-center mb-8">
+          Medi<span className="text-accent-400">Explain</span>
         </h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-400 backdrop-blur-sm"
-          />
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <div>
+            <label className="block text-sm font-semibold text-white/90 mb-1">
+              Username
+            </label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="w-full rounded-xl px-4 py-2 bg-white/20 text-white placeholder-white/60 
+              focus:outline-none focus:ring-2 focus:ring-accent-400"
+              placeholder="Enter your username"
+            />
+          </div>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-400 backdrop-blur-sm"
-          />
+          <div>
+            <label className="block text-sm font-semibold text-white/90 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full rounded-xl px-4 py-2 bg-white/20 text-white placeholder-white/60 
+              focus:outline-none focus:ring-2 focus:ring-accent-400"
+              placeholder="Enter your password"
+            />
+          </div>
 
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-400 backdrop-blur-sm"
-          />
+          <div>
+            <label className="block text-sm font-semibold text-white/90 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full rounded-xl px-4 py-2 bg-white/20 text-white placeholder-white/60 
+              focus:outline-none focus:ring-2 focus:ring-accent-400"
+              placeholder="Enter your email"
+            />
+          </div>
 
-          <button
+          {/* CTA Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             type="submit"
-            className="mt-4 py-2 rounded-xl bg-primary-500 text-white font-semibold shadow-lg hover:shadow-2xl hover:bg-primary-600 transition-all"
+            className="w-full py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-primary-500 to-accent-500 
+            hover:from-accent-500 hover:to-primary-500 shadow-lg transition-all"
           >
             Login
-          </button>
+          </motion.button>
         </form>
       </motion.div>
     </div>
